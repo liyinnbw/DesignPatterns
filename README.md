@@ -4,8 +4,8 @@ Notes on design patterns for future reference.
 Note that there are people criticising design patterns as a work-around to hide the defects of the language.
 
 Personally feel the patterns can be grouped as:
-* Extend by inheritance
-  * [Abstract Factory](#abstract-factory) - object creator with creation methods to be overriden in subclasses
+* Modify by inheritance
+  * [Factory Method](#factory-method) - creator method that can be modified by subclassing
   * [Template](#template) - single branch of inheritance
   * [Bridge](#bridge) - two separate branches of inheritance
 * Repurposing by wrapping
@@ -15,16 +15,19 @@ Personally feel the patterns can be grouped as:
 * Middle man
   * [Mediator](#mediator) - single point of contact for objects interaction
   * [Observer](#observer) - pass message from one object to others
+  * [Builder](*builder) - build a complex object for someone else
 * Object(s) in object
   * [Composite](#composite) - components in composite
   * [Flyweight](#flyweight) - common data shared across objects
 * Object to be passed around and acted upon
+  * [Prototype](#prototype) - object that can be cloned to new objcect
   * [Singleton](#singleton) - single instance to be referenced by any object
   * [Command](#command) - command to be executed on receiver later
   * [Memento](#memento) - data needed to undo/redo an action
   * [State](#state) - data needed to inform others about their state
 * Object that lends functionality to others at run time
   * [Decorator](#decorator) - accept others to lend functionality
+  * [Abstract Factory](#abstract-factory) - accepted by others to lend object creation functionality
   * [Strategy](#strategy) - accepted by others to lend functionality
   * [visitor](#visitor) - accepted by others to lend functionality
 * Object that references the next object in a chain-like fashion
@@ -34,19 +37,41 @@ Personally feel the patterns can be grouped as:
   * [Iterator](#iterator)
 
 # Creational
-## Abstract factory
+## Factory Method
 Gist:
-* Abstracts object creation
-* Client calls a common interface to create object
-* Client calls a common interface to use object
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Abstract_factory.svg" alt="UML Illustration" width="400">
+* An object creation method that resides in its caller
+* Whereas [abstract factory](#abstract-factory) is an object with potentially many factory methods and is separate from the caller object
+* You can pass a different [abstract factory](#abstract-factory) object to the caller to use a different set of factory methods but you can only subclass the caller to change its own factory method
+<img src="https://javacurious.files.wordpress.com/2013/03/fm_dp1.png" alt="UML Illustration" width="400">
 
 Use cases:
-* Object creation on different platforms
+* When you want to encapsulate object creation to a method
+
+## Abstract factory
+Gist:
+* An object with potentially many factory methods
+* Lends itself to the caller to produce required object
+<img src="https://javacurious.files.wordpress.com/2013/03/af_dp.png" alt="UML Illustration" width="400">
+
+Use cases:
+* When you want the flexibility of producing different products at run time
 
 ## Builder
-## Factory method
+Gist:
+* Builds a complex object for someone else.
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/87/W3sDesign_Builder_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+
+Use cases:
+* When instantiating an object involves assembling multiple components dynamically
+
 ## Prototype
+Gist:
+* An object that can be cloned to create new object
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/W3sDesign_Prototype_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+
+Use cases:
+* When you want to avoid repeatedly defining the same object structure in factory method
+
 ## Singleton
 Gist:
 * Static class to get one and only one instance.
