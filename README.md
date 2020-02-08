@@ -1,14 +1,16 @@
 # Design Patterns
-Notes on design patterns for future reference
+* Notes on design patterns for future reference.
+* Note that there are people criticising design patterns as a work-around to hide the defects of the language.
 
 # Creational
 ## Abstract factory
 ## Builder
 ## Factory method
 ## Prototype
-## Singleton
+## Singleton (one of the authors wanted to remove this pattern)
 Gist:
 * Static class to get one and only one instance.
+* Only the static class can instantiate and destruct of the instance.
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Singleton_UML_class_diagram.svg" alt="UML Illustration" width="400">
 
 Use cases:
@@ -41,18 +43,19 @@ Gist:
 
 Use cases:
 * When both the class and what it does can be modified very often
+* No impact on existing abstract-implementation files when you need different class structure and implementation. Just subclass a different pair of abstract-implementation files!
 
-Down side:
-* You will need at least 4 separate files to do something that could be done by 1 class...
+
 
 ## Composite
+Gist:
 * The essence is to use a common interface for both component and composite
 * Composite hold references to each component
 * Composite distribute client call to each component methods
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Composite_UML_class_diagram_%28fixed%29.svg" alt="UML Illustration" width="400">
 
 Use cases:
-* Unify client-facing interface for composite and component operations
+* Unify client-facing interface for composite and component operations so that you don't have to worry whether you are calling a component or composite
 
 ## Decorator
 Gist:
@@ -112,24 +115,26 @@ Use cases:
 * UI action, input replay, undo-redo, transaction, multi-page wizards
 
 ## Interpreter*
+Gist:
 * Kind of a special case of [composite](#composite) pattern
 * A sequence of interpreters completes a task 
 
 ## Iterator
-* Should be self-explanatory
+Should require no explanation
 
 ## Mediator
-* A middle man that handles interaction between objects
+Gist:
+* A middle man that handles interaction between objects, like a single point of contact
 * Objects calls mediator and pass themselves as parameter
 * Mediator then handles the interaction for them 
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/W3sDesign_Mediator_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
 
-## Memento
-* A pattern to save state and restore state (undo)
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/W3sDesign_Memento_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+Use cases:
+* Tidy up objects interaction 
 
 ## Observer
 Gist:
+* Somewhat a special case of [mediator](#mediator)
 * Object being observed register/unregister observers in a private list
 * Object notifies registered observers when there is a state change
 * Observers then inform other relevant objects about the state change event
@@ -137,11 +142,49 @@ Gist:
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Observer_w_update.svg" alt="UML Illustration" width="400">
 
 Use cases:
-* Observer as the middle man of message/event passing
+* Event listener, the middle man of message/event passing
 * MVC pattern where observer is the controller
 
-## State
-## Strategy
-## Template method
-## Visitor
+## Memento
+Gist:
+* A simple class with setState and getState methods
+* But unlike [state](#state) pattern, it does not act on state, just a data keeper
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/W3sDesign_Memento_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
 
+Use cases:
+* Redo/Undo
+
+## State
+Gist:
+* Structurally similar to [strategy](#strategy) and [visitor](#visitor)
+* Context object accepts state object at run time and behave differently based on state
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/W3sDesign_State_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+
+Use cases:
+* When you want to change context object's behaviour at run time on different conditions
+
+## Strategy
+Gist:
+* Structurally similar to [state](#state) and [visitor](#visitor)
+* Context object accepts strategy object and calls strategy object to perform operation at run time
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/45/W3sDesign_Strategy_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+
+Use cases:
+* When you want context object to receive and execute differet algorithms at run time
+
+## Visitor
+Gist:
+* Structurally similar to [state](#state) and [Strategy](#strategy)
+* Element object accepts visitor object and calls vistor object to perform operation on element at run time
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/W3sDesign_Visitor_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
+
+Use cases:
+* When you want element object to receive and execute differet algorithms at run time (very similar to [strategy](#strategy))
+
+## Template method
+Gist:
+* Essentially what you always do when you create super-subclass structure
+* Provide abstract or shared methods in base class and allow subclass to implement or override the methods
+
+Use cases:
+* When you want objects to have shared and custom behaviours
