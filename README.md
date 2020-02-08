@@ -1,16 +1,57 @@
 # Design Patterns
-* Notes on design patterns for future reference.
-* Note that there are people criticising design patterns as a work-around to hide the defects of the language.
+Notes on design patterns for future reference.
+
+Note that there are people criticising design patterns as a work-around to hide the defects of the language.
+
+Personally feel the patterns can be grouped as:
+* Extend by inheritance
+  * [Abstract Factory](#abstract-factory) - object creator with creation methods to be overriden in subclasses
+  * [Template](#template) - single branch of inheritance
+  * [Bridge](#bridge) - two separate branches of inheritance
+* Repurposing by wrapping
+  * [Adapter](#adapter) - change interface by wrapping one
+  * [Facade](#facade) - simplify interface by wrapping many
+  * [Proxy](#proxy) - control access by wrapping one
+* Middle man
+  * [Mediator](#mediator) - single point of contact for objects interaction
+  * [Observer](#observer) - pass message from one object to others
+* Object(s) in object
+  * [Composite](#composite) - components in composite
+  * [Flyweight](#flyweight) - common data shared across objects
+* Object to be passed around and acted upon
+  * [Singleton](#singleton) - single instance to be referenced by any object
+  * [Command](#command) - command to be executed on receiver later
+  * [Memento](#memento) - data needed to undo/redo an action
+  * [State](#state) - data needed to inform others about their state
+* Object that lends functionality to others at run time
+  * [Decorator](#decorator) - accept others to lend functionality
+  * [Strategy](#strategy) - accepted by others to lend functionality
+  * [visitor](#visitor) - accepted by others to lend functionality
+* Object that references the next object in a chain-like fashion
+  * [Chain of responsibility](#chain-of-responsibility) - sequentially invoke the next object in chain
+  * [Interpreter](#interpreter) - sequentially evaluates a message
+* Others
+  * [Iterator](#iterator)
 
 # Creational
 ## Abstract factory
+Gist:
+* Abstracts object creation
+* Client calls a common interface to create object
+* Client calls a common interface to use object
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Abstract_factory.svg" alt="UML Illustration" width="400">
+
+Use cases:
+* Object creation on different platforms
+
 ## Builder
 ## Factory method
 ## Prototype
-## Singleton (one of the authors wanted to remove this pattern)
+## Singleton
 Gist:
 * Static class to get one and only one instance.
 * Only the static class can instantiate and destruct of the instance.
+* One of the authors suggested to remove this pattern
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Singleton_UML_class_diagram.svg" alt="UML Illustration" width="400">
 
 Use cases:
@@ -44,7 +85,6 @@ Gist:
 Use cases:
 * When both the class and what it does can be modified very often
 * No impact on existing abstract-implementation files when you need different class structure and implementation. Just subclass a different pair of abstract-implementation files!
-
 
 
 ## Composite
@@ -103,8 +143,9 @@ Gist:
 Use cases:
 * When you need a chain of receivers to either handle or pass to next receiver at run time
 
-## Command (resembles functional programming)
+## Command
 Gist:
+* Resembles functional programming
 * A command object contains all information needed to execute the command at a later time (can be queued)
 * 3 objects are involved to execute an action:
   * Invoker: issues a command, only know command interface, does not know the command receiver
@@ -139,7 +180,7 @@ Gist:
 * Object notifies registered observers when there is a state change
 * Observers then inform other relevant objects about the state change event
 * Decouples the observed object from the other objects
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Observer_w_update.svg" alt="UML Illustration" width="400">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/01/W3sDesign_Observer_Design_Pattern_UML.jpg" alt="UML Illustration" width="400">
 
 Use cases:
 * Event listener, the middle man of message/event passing
@@ -181,7 +222,7 @@ Gist:
 Use cases:
 * When you want element object to receive and execute differet algorithms at run time (very similar to [strategy](#strategy))
 
-## Template method
+## Template
 Gist:
 * Essentially what you always do when you create super-subclass structure
 * Provide abstract or shared methods in base class and allow subclass to implement or override the methods
