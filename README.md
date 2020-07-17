@@ -125,11 +125,12 @@ Use cases:
 ## Decorator
 Gist:
 * A way of extending object functionality
+* In python this can be easily achieved by defining a function that receive other function and extend its functionality
 * Structurally the same as [chain of responsibility](#chain-of-responsibility) 
 * Subclass base class
 * Receive base class object reference at constructor and save as private property
 * Use base class object reference to call base class methods
-* Extend base class functionality by implementing new methods
+* Extend base class functionality by add additional operation after calling base class method.
 * Decorator can subclass decorator
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Decorator_UML_class_diagram.svg" alt="UML Illustration" width="400">
 
