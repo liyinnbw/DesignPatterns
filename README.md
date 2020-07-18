@@ -149,7 +149,7 @@ Gist:
 ## Proxy
 Gist
 * A light-weight substitute to another more heavy-weight object
-* The proxy and real object share the common interface
+* The proxy and real object share the common interface, otherwise it's an [adapter](#adapter)
 * The proxy holds a private reference to the real object
 * The proxy can add additional logic to control access to the real object
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Proxy_pattern_diagram.svg" alt="UML Illustration" width="400">
